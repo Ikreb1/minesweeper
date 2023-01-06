@@ -1,45 +1,368 @@
 ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  .tile {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 34px;
-  }
-  
-  .tile:focus {
-    outline: none;
-  }
-  
-  .kbd-navigation .tile:focus {
-    background: #ddd;
-  }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-  }
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.tile {
+  background: #fff;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 16px;
+  padding: 0;
+  text-align: center;
+  width: 16px;
+}
+
+.tile:focus {
+  outline: none;
+}
+
+.kbd-navigation .tile:focus {
+  background: #ddd;
+}
+
+.game {
+  background-color: rgb(73, 71, 63);
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+div.borderTopLeft {
+  background-image: url(./../assets/images/borderTopLeft.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+div.borderTopRight {
+  background-image: url(./../assets/images/borderTopRight.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+div.borderBottomLeft {
+  background-image: url(./../assets/images/borderBottomLeft.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+div.borderBottomRight {
+  background-image: url(./../assets/images/borderBottomRight.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+div.borderTopBottom {
+  background-image: url(./../assets/images/borderTopBottom.png);
+  background-repeat: repeat-x;
+  background-size: 16px 10px;
+  float: left;
+  width: 16px;
+  height: 10px;
+}
+
+.borderLeftRight {
+  background-image: url(./../assets/images/borderLeftRight.png);
+  background-repeat: repeat-y;
+  background-size: 10px 16px;
+  float: left;
+  width: 10px;
+  height: 16px;
+}
+
+.borderLeftRightLong {
+  background-image: url(./../assets/images/borderLeftRightLong.png);
+  background-repeat: repeat-y;
+  background-size: 10px 32px;
+  float: left;
+  width: 10px;
+  height: 32px;
+}
+
+.time0 {
+  background-image: url(./../assets/images/time0.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time1 {
+  background-image: url(./../assets/images/time1.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time2 {
+  background-image: url(./../assets/images/time2.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time3 {
+  background-image: url(./../assets/images/time3.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time4 {
+  background-image: url(./../assets/images/time4.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time5 {
+  background-image: url(./../assets/images/time5.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time6 {
+  background-image: url(./../assets/images/time6.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time7 {
+  background-image: url(./../assets/images/time7.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time8 {
+  background-image: url(./../assets/images/time8.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.time9 {
+  background-image: url(./../assets/images/time9.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.timeNull {
+  background-image: url(./../assets/images/timeNull.png);
+  background-repeat: no-repeat;
+  background-size: 13px 23px;
+  float: left;
+  width: 13px;
+  height: 23px;
+}
+
+.borderJointTopLeft {
+  background-image: url(./../assets/images/borderJointTopLeft.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+.borderJointTopRight {
+  background-image: url(./../assets/images/borderJointTopRight.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  float: left;
+  width: 10px;
+  height: 10px;
+}
+
+.smileyface {
+  background-image: url(./../assets/images/smileyface.png);
+  background-repeat: no-repeat;
+  background-size: 26px 26px;
+  float: left;
+  width: 26px;
+  height: 26px;
+}
+
+#face {
+  margin: 3px 0px;
+}
+
+#mines_hundreds {
+  margin: 4px 0px 5px 6px;
+}
+
+#mines_tens {
+  margin: 4px 0px 5px 0px;
+}
+
+#mines_ones {
+  margin: 4px 0px 5px 0px;
+}
+
+#time_hundreds {
+  margin: 4px 0px 5px 0px;
+}
+
+#time_tens {
+  margin: 4px 0px 5px 0px;
+}
+
+#time_ones {
+  margin: 4px 6px 5px 0px;
+}
+
+.blank {
+  background-image: url(./../assets/images/blank.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open0 {
+  background-image: url(./../assets/images/open0.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open1 {
+  background-image: url(./../assets/images/open1.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open2 {
+  background-image: url(./../assets/images/open2.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open3 {
+  background-image: url(./../assets/images/open3.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open4 {
+  background-image: url(./../assets/images/open4.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open5 {
+  background-image: url(./../assets/images/open5.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open6 {
+  background-image: url(./../assets/images/open6.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open7 {
+  background-image: url(./../assets/images/open7.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.open8 {
+  background-image: url(./../assets/images/open8.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.bombRevealed {
+  background-image: url(./../assets/images/bombRevealed.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+
+.bombFlagged {
+  background-image: url(./../assets/images/bombFlagged.png);
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  float: left;
+  width: 16px;
+  height: 16px;
+}

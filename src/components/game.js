@@ -1,6 +1,8 @@
 import "./board.css"
 import React from 'react';
 import Board from './board.js';
+import BoardHeader from './boardHeader.js'
+import BoardFooter from "./BoardFooter";
 
 class Game extends React.Component {
     defaultState() {
@@ -8,11 +10,10 @@ class Game extends React.Component {
             let tiles = []
             for (let i = 0; i < this.props.height * this.props.width; i++) {
                 tiles.push({
-                    renderedText: "",
                     isBomb: false,
                     isFlagged: false,
                     isRevealed: false,
-                    adjecentBombCount: 0
+                    AdjacentBombCount: 0
                 });
             }
             return tiles;
@@ -27,15 +28,17 @@ class Game extends React.Component {
             ],
             stepNumber: 0,
             isGameOver: false,
+            startTime : new Date(),
         };
     }
     constructor(props) {
         super(props);
+        this.reset = this.reset.bind(this);
         this.state = this.defaultState();
     }
 
     generateBombs(index) {
-        let invalidBombPlacements = this.getAdjecentIndexes(index);
+        let invalidBombPlacements = this.getAdjacentIndexes(index);
         invalidBombPlacements.push(index);
 
         let bombState = Array(this.props.height * this.props.width).fill(false);
@@ -56,7 +59,7 @@ class Game extends React.Component {
         return bombState;
     }
 
-    getCardinalAdjecentIndexes(index) {
+    getCardinalAdjacentIndexes(index) {
         let validIndexes = [];
         const width = this.props.width;
         const height = this.props.height;
@@ -91,7 +94,7 @@ class Game extends React.Component {
     }
 
     // need a version the returns only cardinal direction tiles
-    getAdjecentIndexes(index) {
+    getAdjacentIndexes(index) {
         let validIndexes = [];
         const width = this.props.width;
         const height = this.props.height;
@@ -145,7 +148,7 @@ class Game extends React.Component {
     getAdjacentBombCount(index, bombState) {
         let adjacentBombCount = 0;
 
-        const validIndexes = this.getAdjecentIndexes(index);
+        const validIndexes = this.getAdjacentIndexes(index);
         validIndexes.forEach((validIndex) => {
             if (bombState[validIndex]) adjacentBombCount++;
         });
@@ -155,17 +158,17 @@ class Game extends React.Component {
 
     clickTile(index, bombState, tiles) {
         let isGameOver = false;
-        let adjacentCount = this.getAdjacentBombCount(index, bombState)
+        tiles[index].adjacentBombCount = this.getAdjacentBombCount(index, bombState)
         tiles[index].isRevealed = true;
         if (bombState[index]) {
-            tiles[index].renderedText = "B";
+            tiles[index].isBomb = true;
             isGameOver = true
             return isGameOver;
         }
-        tiles[index].renderedText = adjacentCount;
+        tiles[index].renderedText = tiles[index].adjacentBombCount;
 
-        if (adjacentCount === 0 && !bombState[index]) {
-            const validIndexes = this.getAdjecentIndexes(index);
+        if (tiles[index].adjacentBombCount === 0 && !bombState[index]) {
+            const validIndexes = this.getAdjacentIndexes(index);
             validIndexes.forEach((validIndex) => {
                 if (!tiles[validIndex].isRevealed) {
                     this.clickTile(validIndex, bombState, tiles);
@@ -180,9 +183,11 @@ class Game extends React.Component {
         const history = this.state.history.slice(0, this.state.stepNumber + 1);
         const current = history[history.length - 1];
 
+        let time = this.state.startTime;
         let bombState = this.state.bombState.slice();
         if (this.state.stepNumber === 0) {
             bombState = this.generateBombs(index);
+            time = new Date();
         }
         const tiles = current.tiles.slice();
 
@@ -200,7 +205,8 @@ class Game extends React.Component {
                 }
             ]),
             stepNumber: history.length,
-            isGameOver: isGameOver
+            isGameOver: isGameOver,
+            startTime: time
         });
     }
 
@@ -241,27 +247,24 @@ class Game extends React.Component {
         });
     }
 
-    Reset() {
+    reset() {
         this.setState(this.defaultState());
     }
 
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
-
-        const reset = () => {
-        return (
-                <button onClick={() => this.Reset()}>{"Reset"}</button>
-        );
-        };
-  
-        const BombCount = "BombCount: " + this.state.bombCount;
-        const Height = "Height: " + this.props.height;
-        const Width = "Width: " + this.props.width;
   
         return (
-            <div className="game">
+            <div className="game" onContextMenu={() => {return false;}} onDrag={() => {return false;}} onDragStart={() => {return false;}}>
                 <div className="game-board">
+                    <BoardHeader
+                        height={this.props.height}
+                        width={this.props.width}
+                        resetFunction={this.reset}
+                        bombCount={this.state.bombCount}
+                        startTime={this.state.startTime}
+                    />
                     <Board
                         height={this.props.height}
                         width={this.props.width}
@@ -269,13 +272,10 @@ class Game extends React.Component {
                         onClick={i => this.handleClick(i)}
                         onContextMenu={i => this.handleRightClick(i)}
                     />
-                </div>
-                <div className="game-info">
-                    <div>{this.state.isGameOver ? "Game Over" : ""}</div>
-                    <div>{BombCount}</div>
-                    <div>{Height}</div>
-                    <div>{Width}</div>
-                    {reset()}
+                    <BoardFooter
+                        height={this.props.height}
+                        width={this.props.width}
+                    />
                 </div>
             </div>
         );

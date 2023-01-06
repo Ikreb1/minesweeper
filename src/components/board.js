@@ -6,7 +6,7 @@ class Board extends React.Component {
     rendertiles(i) {
         return (
         <Tile
-            value={this.props.tiles[i]}
+            tile={this.props.tiles[i]}
             onClick={() => this.props.onClick(i)}
             onContextMenu={() => this.props.onContextMenu(i)}
         />
@@ -21,10 +21,12 @@ class Board extends React.Component {
         return row;
     }
 
-    renderBoard(boardWidth, boardHeight) {
+    renderBoard() {
         let board = [];
+        const boardWidth = this.props.width;
+        const boardHeight = this.props.height;
         for (let i = 0; i < boardHeight; i++) {
-            let row = <div className="board-row">{this.renderRow(i, boardWidth)}</div>;
+            let row = <div className="board-row"><div className='borderLeftRight'/>{this.renderRow(i, boardWidth)}<div className='borderLeftRight'/></div>;
             board.push(row);
         }
         return board;
@@ -32,9 +34,7 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.renderBoard(this.props.width, this.props.height)}
-            </div>
+                this.renderBoard()
         );
     }
 }
