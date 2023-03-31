@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-          Minesweeper
+          Bugsweeper
         </h1>
         <Game
           width={30}
